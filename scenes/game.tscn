@@ -1,17 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c80bg06s5ewg2"]
+[gd_scene load_steps=7 format=3 uid="uid://c80bg06s5ewg2"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7ix0c"]
 [ext_resource type="PackedScene" uid="uid://dsn8810b13jx6" path="res://scenes/player.tscn" id="1_a3j4s"]
 [ext_resource type="Texture2D" uid="uid://duodqwr6t0kha" path="res://assets/sprites/tilesets/modern/Room_Builder_32x32.png" id="2_e7bs8"]
 [ext_resource type="PackedScene" uid="uid://b0mbes7axfc7i" path="res://scenes/xp.tscn" id="4_opf30"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7sijm"]
-load_path = "res://.godot/imported/Interiors_32x32.png-b465655f487eadb70dc0a0f8b4231a57.ctex"
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k4wef"]
-resource_name = "interior"
-texture = SubResource("CompressedTexture2D_7sijm")
-texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0v72"]
 resource_name = "room"
@@ -3790,7 +3782,6 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_kocf2"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_k4wef")
 sources/1 = SubResource("TileSetAtlasSource_c0v72")
 
 [node name="GameRoot" type="Node2D"]
