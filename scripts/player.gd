@@ -2,11 +2,17 @@
 extends CharacterBody2D
 
 
+# Delegates
+signal on_level_up
+
+
 # Variables
 @export var Speed = 300.0
-
 var SpeedMultiplier = 1
+
+var LevelThreshold = [0,1,5,10]
 var CurrentXP = 0.0
+var CurrentLevel = 0
 
 var FacingDirection
 
@@ -36,4 +42,8 @@ func handle_movement(delta):
 
 func give_xp(xp):
 	CurrentXP += xp
-	print("Current XP = " + CurrentXP)
+	if(LevelThreshold.size() > CurrentLevel && CurrentXP >= LevelThreshold[CurrentLevel+1]):
+		CurrentLevel = CurrentLevel + 1
+		on_level_up.emit(CurrentLevel)
+		
+	print("Current XP = ", CurrentXP)

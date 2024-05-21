@@ -4,8 +4,12 @@ extends Area2D
 
 # Variables
 var Speed = 1000.0
-var XP
+var XP = 1.0
 var MovementDir := Vector2()
+
+
+# Delegates
+signal recycle
 
 
 # Funcs and Defs
@@ -36,13 +40,5 @@ func setup(xp_value):
 
 
 func _on_body_entered(body):
-	if body.get_name()  == "MagnetCollidor":
-		MovementDir = Vector2(global_position - body.global_position).normalized()
-	elif body.get_name() == "CollisionShape2D":
-		body.give_xp(XP)
-		queue_free()
-
-
-func _on_body_exited(body):
-	if body.get_class() == "xp_magnet":
-		MovementDir = Vector2(0,0)
+	body.give_xp(XP)
+	queue_free()

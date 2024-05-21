@@ -7,6 +7,10 @@ var Speed = 2000.0
 var SpeedMultiplier = 1.0
 
 
+# Delegates
+signal recycle
+
+
 # Funcs and Defs
 func _physics_process(delta):
 	# Update Movement

@@ -1,0 +1,10 @@
+[gd_resource type="JSON" format=3 uid="uid://blmnms02py5m4"]
+
+[resource]
+data = {
+"Damage": 1.0,
+"HP": 2.0,
+"Speed": 1000.0,
+"Sprite": "testmob/testmob.png",
+"Type": "TestMob"
+}

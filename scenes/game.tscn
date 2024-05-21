@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c80bg06s5ewg2"]
+[gd_scene load_steps=8 format=3 uid="uid://c80bg06s5ewg2"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7ix0c"]
 [ext_resource type="PackedScene" uid="uid://dsn8810b13jx6" path="res://scenes/player.tscn" id="1_a3j4s"]
@@ -3784,6 +3784,10 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_c0v72")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_c25aj"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(-280, -157, 282, -155, 281, 151, -281, 152)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
 [node name="GameRoot" type="Node2D"]
 script = ExtResource("1_7ix0c")
 
@@ -3802,3 +3806,6 @@ position_smoothing_enabled = true
 
 [node name="xp" parent="." instance=ExtResource("4_opf30")]
 position = Vector2(142, 7)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_c25aj")
