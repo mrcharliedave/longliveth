@@ -3,8 +3,15 @@ extends CharacterBody2D
 
 
 # Variables
+var MobType
+
 var Speed = 2000.0
 var SpeedMultiplier = 1.0
+
+var CurrentHP
+var MaxHP
+
+var XPValue
 
 
 # Delegates
@@ -18,6 +25,12 @@ func _physics_process(delta):
 	velocity = direction * Speed * SpeedMultiplier * delta
 
 	move_and_slide()
+
+func setup_mob(mobType):
+	pass
+
+func mob_die():
+	pass
 
 func get_movement_direction():
 	return global_position - get_tree().get_node("GameRoot").get_player_position()
