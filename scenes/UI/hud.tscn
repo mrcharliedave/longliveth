@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://csx8r3karvld4"]
+
+[ext_resource type="FontFile" uid="uid://mhqw0br17obl" path="res://assets/fonts/JetBrainsMono-Medium.ttf" id="1_bf1wq"]
+[ext_resource type="Script" path="res://scripts/UI/fps_counter.gd" id="2_ler3i"]
+[ext_resource type="Script" path="res://scripts/UI/game_timer.gd" id="3_mxmtl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4dajy"]
+font = ExtResource("1_bf1wq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_1s08w"]
+font = ExtResource("1_bf1wq")
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 48.0
+offset_bottom = 22.0
+
+[node name="fps_counter" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "FPS: "
+label_settings = SubResource("LabelSettings_4dajy")
+script = ExtResource("2_ler3i")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="game_timer" type="Label" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+text = "Time Elapsed"
+label_settings = SubResource("LabelSettings_1s08w")
+horizontal_alignment = 2
+script = ExtResource("3_mxmtl")

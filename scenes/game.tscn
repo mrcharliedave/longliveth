@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c80bg06s5ewg2"]
+[gd_scene load_steps=10 format=3 uid="uid://c80bg06s5ewg2"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7ix0c"]
 [ext_resource type="PackedScene" uid="uid://dsn8810b13jx6" path="res://scenes/player.tscn" id="1_a3j4s"]
 [ext_resource type="Texture2D" uid="uid://duodqwr6t0kha" path="res://assets/sprites/tilesets/modern/Room_Builder_32x32.png" id="2_e7bs8"]
 [ext_resource type="PackedScene" uid="uid://b0mbes7axfc7i" path="res://scenes/xp.tscn" id="4_opf30"]
+[ext_resource type="PackedScene" uid="uid://d33yjxvb4oaf" path="res://scenes/mob.tscn" id="5_pynmd"]
+[ext_resource type="PackedScene" uid="uid://csx8r3karvld4" path="res://scenes/UI/hud.tscn" id="6_a7jte"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0v72"]
 resource_name = "room"
@@ -3804,8 +3806,14 @@ zoom = Vector2(2, 2)
 limit_smoothed = true
 position_smoothing_enabled = true
 
+[node name="Hud" parent="player/Camera2D" instance=ExtResource("6_a7jte")]
+clip_contents = true
+
 [node name="xp" parent="." instance=ExtResource("4_opf30")]
 position = Vector2(142, 7)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_c25aj")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_pynmd")]
+position = Vector2(-183, -75)

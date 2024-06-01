@@ -14,31 +14,37 @@ signal recycle
 
 # Funcs and Defs
 func _ready():
-	#disable_xp()
-	pass
-
+	disable_xp()
 
 func _process(delta):
 	if !MovementDir.is_zero_approx():
 		global_position += MovementDir * delta * Speed
 
-
 func disable_xp():
 	XP = 0
 	MovementDir = Vector2(0,0)
-	$AnimatedSprite2D.stop()
-	$AnimatedSprite2D.hide()
-	
-	$CollisionShape2D.set_disabled(true)	
+	set_enabled(false)
 
-
-func setup(xp_value):
+func setup(xp_value, location):
 	XP = xp_value
-	$AnimatedSprite2D.show()
-	
-	$CollisionShape2D.set_disabled(false)
+	global_position = location
+	set_enabled(true)
 
+func set_enabled(enable):
+	$AnimatedSprite2D.visible = enable
+	if enable :
+		$AnimatedSprite2D.play("default")
+	else :
+		$AnimatedSprite2D.stop()
+	
+	$CollisionShape2D.set_disabled(!enable)
+	
+	set_process(enable)
+
+func xp_collected():
+	recycle.emit(self)
 
 func _on_body_entered(body):
-	body.give_xp(XP)
-	queue_free()
+	if body.has_method("give_xp") :
+		body.give_xp(XP)
+		xp_collected()
