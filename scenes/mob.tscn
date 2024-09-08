@@ -3,10 +3,6 @@
 [ext_resource type="Script" path="res://scripts/mob.gd" id="1_5j1va"]
 [ext_resource type="Texture2D" uid="uid://6cb6jjftjl6u" path="res://assets/sprites/testmob/testmob.png" id="2_2vlq7"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ijnj"]
-radius = 22.0
-height = 68.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m7og0"]
 atlas = ExtResource("2_2vlq7")
 region = Rect2(0, 0, 64, 64)
@@ -48,24 +44,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ijnj"]
+radius = 22.0
+height = 68.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 11
 script = ExtResource("1_5j1va")
 MaxHP = 2.0
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 6
-
-[node name="DamageArea" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_0ijnj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0ief0")
 animation = &"death"
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="DamageArea" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0ijnj")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_player_touched"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_finished"]

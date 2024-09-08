@@ -24,7 +24,7 @@ func set_enabled(enable):
 	set_physics_process(enable)
 	$AnimatedSprite2D.visible = enable
 	
-	$Area2D/CollisionShape2D.set_disabled(!enable)
+	$Area2D/CollisionShape2D.set_deferred("disabled", !enable)
 	
 	if enable :
 		$AnimatedSprite2D.play("default")

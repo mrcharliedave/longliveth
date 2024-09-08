@@ -37,14 +37,16 @@ func set_enabled(enable):
 	else :
 		$AnimatedSprite2D.stop()
 	
-	$CollisionShape2D.set_disabled(!enable)
+	$CollisionShape2D.set_deferred("disabled", !enable)
 	
 	set_process(enable)
 
 func xp_collected():
+	disable_xp()
 	recycle.emit(self)
 
-func _on_body_entered(body):
+
+func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("give_xp") :
 		body.give_xp(XP)
 		xp_collected()

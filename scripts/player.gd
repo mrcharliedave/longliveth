@@ -13,7 +13,7 @@ var SpeedMultiplier = 1
 @export var MaxHP = 10
 var CurrentHP = 10
 
-var LevelThreshold = [0,1,5,10]
+var LevelThreshold = [0,1,3,6,12,25,50]
 var CurrentXP = 0.0
 var CurrentLevel = 0
 
@@ -28,7 +28,7 @@ func _ready():
 
 func _physics_process(delta):
 	handle_movement(delta)
-	ATB += delta
+	ATB += delta * (CurrentLevel + 1)
 	if(ATB >= ActionTime):
 		ATB = 0
 		action()

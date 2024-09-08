@@ -55,8 +55,7 @@ func set_enabled(enable):
 	else :
 		$AnimatedSprite2D.stop()
 	
-	$CollisionShape2D.disabled = !enable
-	$Area2D/DamageArea.disabled = !enable
+	$DamageArea.set_deferred("disabled", !enable)
 	
 	set_process(enable)
 	set_physics_process(enable)
