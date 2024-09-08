@@ -30,6 +30,15 @@ func _process(delta):
 	if spawn_timer <= 0 :
 		request_mob(0, Vector2(0,0))
 		spawn_timer = SpawnCooldown
+		
+	if Input.is_action_just_pressed("toggle_vsync"):
+		var current_sync = DisplayServer.window_get_vsync_mode()
+		var next_sync = DisplayServer.VSYNC_ENABLED
+		
+		if current_sync == DisplayServer.VSYNC_ENABLED:
+			next_sync = DisplayServer.VSYNC_DISABLED
+		
+		DisplayServer.window_set_vsync_mode(next_sync)
 
 func request_projectile(type):
 	var proj = ProjectilePool[0]
