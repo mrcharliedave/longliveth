@@ -21,14 +21,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="projectile" type="Node2D"]
-script = ExtResource("1_r6syj")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D"]
 collision_layer = 2
 collision_mask = 8
+script = ExtResource("1_r6syj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_je1cg")
 
@@ -37,5 +35,4 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_i2l5w")
 autoplay = "default"
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_projectile_collision"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://c80bg06s5ewg2"]
+[gd_scene load_steps=8 format=4 uid="uid://c80bg06s5ewg2"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7ix0c"]
 [ext_resource type="PackedScene" uid="uid://dsn8810b13jx6" path="res://scenes/player.tscn" id="1_a3j4s"]
 [ext_resource type="Texture2D" uid="uid://duodqwr6t0kha" path="res://assets/sprites/tilesets/modern/Room_Builder_32x32.png" id="2_e7bs8"]
-[ext_resource type="PackedScene" uid="uid://b0mbes7axfc7i" path="res://scenes/xp.tscn" id="4_opf30"]
-[ext_resource type="PackedScene" uid="uid://d33yjxvb4oaf" path="res://scenes/mob.tscn" id="5_pynmd"]
 [ext_resource type="PackedScene" uid="uid://csx8r3karvld4" path="res://scenes/UI/hud.tscn" id="6_a7jte"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c0v72"]
@@ -3787,11 +3785,14 @@ tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_c0v72")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c25aj"]
+vertices = PackedVector2Array(271.961, -145.031, 271.031, 141.008, -270.961, 141.977, -270.031, -146.961)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-280, -157, 282, -155, 281, 151, -281, 152)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="GameRoot" type="Node2D"]
 script = ExtResource("1_7ix0c")
+SpawnCooldown = 1
 
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -3802,17 +3803,12 @@ tile_set = SubResource("TileSet_kocf2")
 Speed = 3000.0
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(1.5, 1.5)
 limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Hud" parent="player/Camera2D" instance=ExtResource("6_a7jte")]
 clip_contents = true
 
-[node name="xp" parent="." instance=ExtResource("4_opf30")]
-position = Vector2(142, 7)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_c25aj")
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("5_pynmd")]
-position = Vector2(-183, -75)

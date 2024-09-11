@@ -24,7 +24,7 @@ func set_enabled(enable):
 	set_physics_process(enable)
 	$AnimatedSprite2D.visible = enable
 	
-	$Area2D/CollisionShape2D.set_deferred("disabled", !enable)
+	$CollisionShape2D.set_deferred("disabled", !enable)
 	
 	if enable :
 		$AnimatedSprite2D.play("default")
@@ -53,11 +53,7 @@ func projectile_die():
 	set_enabled(false)
 	recycle.emit(self)
 
-func _on_projectile_collision(body):
+func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage(Damage)
 		projectile_die()
-
-
-func _on_area_2d_area_entered(area):
-	_on_projectile_collision(area.get_parent())

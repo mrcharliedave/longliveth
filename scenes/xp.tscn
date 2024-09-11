@@ -3,6 +3,9 @@
 [ext_resource type="Script" path="res://scripts/xp.gd" id="1_77d74"]
 [ext_resource type="Texture2D" uid="uid://dgw56iyxb787s" path="res://assets/sprites/xp.png" id="2_rx2as"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dh2k"]
+radius = 14.0357
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q67h0"]
 atlas = ExtResource("2_rx2as")
 region = Rect2(0, 0, 32, 32)
@@ -53,20 +56,17 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8dh2k"]
-radius = 14.0357
-
 [node name="xp" type="Area2D"]
 collision_mask = 5
 script = ExtResource("1_77d74")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8dh2k")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gck6m")
 autoplay = "default"
 frame_progress = 0.229701
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8dh2k")
-disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

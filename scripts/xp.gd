@@ -45,7 +45,6 @@ func xp_collected():
 	disable_xp()
 	recycle.emit(self)
 
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("give_xp") :
 		body.give_xp(XP)

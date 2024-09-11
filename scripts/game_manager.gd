@@ -28,7 +28,7 @@ func _ready():
 func _process(delta):
 	spawn_timer -= delta
 	if spawn_timer <= 0 :
-		request_mob(0, Vector2(0,0))
+		request_mob(0, get_node("player").global_position + get_random_offscreen_position())
 		spawn_timer = SpawnCooldown
 		
 	if Input.is_action_just_pressed("toggle_vsync"):
@@ -111,3 +111,29 @@ func get_closest_mob_position():
 	if closest_mob :
 		return closest_mob.global_position
 	return Vector2(0,0)
+
+func get_random_offscreen_position():
+	var x_length = get_viewport().get_visible_rect().size.x / 3
+	var y_length = get_viewport().get_visible_rect().size.y / 3
+	
+	var random_x = randf_range(-x_length, x_length)
+	var random_y = randf_range(-y_length, y_length)
+	
+	var random1 = Vector2(x_length, random_y)
+	var random2 = Vector2(-x_length, random_y)
+	var random3 = Vector2(random_x, y_length)
+	var random4 = Vector2(random_x, -y_length)
+	
+	var return_vec = random1
+	
+	match randi_range(0,3) :
+		0 :
+			return_vec = random1
+		1 :
+			return_vec = random2
+		2 :
+			return_vec = random3
+		3 :
+			return_vec = random4
+		
+	return return_vec
