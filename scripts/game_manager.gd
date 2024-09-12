@@ -113,8 +113,9 @@ func get_closest_mob_position():
 	return Vector2(0,0)
 
 func get_random_offscreen_position():
-	var x_length = get_viewport().get_visible_rect().size.x / 3
-	var y_length = get_viewport().get_visible_rect().size.y / 3
+	var win_size = DisplayServer.window_get_size() / $player/Camera2D.zoom.x
+	var x_length = win_size.x / 2
+	var y_length = win_size.y / 2
 	
 	var random_x = randf_range(-x_length, x_length)
 	var random_y = randf_range(-y_length, y_length)
