@@ -44,6 +44,7 @@ func setup_mob(mobType, starting_position):
 	set_enabled(true)
 
 func mob_die():
+	$DamageParticles.restart()
 	set_enabled(false)
 	get_tree().root.get_node("GameRoot").request_xp(XPValue, global_position)
 	recycle.emit(self)
